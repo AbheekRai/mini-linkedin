@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedPro - Professional Network</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation Header -->
+        <header class="navbar" id="navbar" style="display: none;">
+            <div class="container">
+                <div class="navbar-content">
+                    <div class="navbar-brand">
+                        <h3 class="brand-title">LinkedPro</h3>
+                    </div>
+                    <nav class="navbar-nav">
+                        <a href="#" class="nav-link" data-route="home">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                <polyline points="9,22 9,12 15,12 15,22"/>
+                            </svg>
+                            Home
+                        </a>
+                        <a href="#" class="nav-link" data-route="profile">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            Profile
+                        </a>
+                        <a href="#" class="nav-link" data-route="create-post">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v20M2 12h20"/>
+                            </svg>
+                            Create Post
+                        </a>
+                    </nav>
+                    <div class="navbar-user">
+                        <span class="user-name" id="navbarUserName"></span>
+                        <button class="btn btn--sm btn--outline" id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="mainContent">
+            <!-- Landing/Login Page -->
+            <div id="loginPage" class="page active">
+                <div class="auth-container">
+                    <div class="auth-card card">
+                        <div class="card__body">
+                            <div class="auth-header">
+                                <h1>LinkedPro</h1>
+                                <p>Connect with professionals worldwide</p>
+                            </div>
+                            
+                            <form id="loginForm" class="auth-form">
+                                <div class="form-group">
+                                    <label for="loginEmail" class="form-label">Email</label>
+                                    <input type="email" id="loginEmail" class="form-control" required>
+                                    <div class="error-message" id="loginEmailError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="loginPassword" class="form-label">Password</label>
+                                    <input type="password" id="loginPassword" class="form-control" required>
+                                    <div class="error-message" id="loginPasswordError"></div>
+                                </div>
+                                <button type="submit" class="btn btn--primary btn--full-width">Sign In</button>
+                                <div class="form-message" id="loginMessage"></div>
+                            </form>
+                            
+                            <div class="auth-footer">
+                                <p>Don't have an account? <a href="#" id="showRegisterBtn">Sign up</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registration Page -->
+            <div id="registerPage" class="page">
+                <div class="auth-container">
+                    <div class="auth-card card">
+                        <div class="card__body">
+                            <div class="auth-header">
+                                <h1>Join LinkedPro</h1>
+                                <p>Create your professional profile</p>
+                            </div>
+                            
+                            <form id="registerForm" class="auth-form">
+                                <div class="form-group">
+                                    <label for="registerName" class="form-label">Full Name</label>
+                                    <input type="text" id="registerName" class="form-control" required>
+                                    <div class="error-message" id="registerNameError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="registerEmail" class="form-label">Email</label>
+                                    <input type="email" id="registerEmail" class="form-control" required>
+                                    <div class="error-message" id="registerEmailError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="registerPassword" class="form-label">Password</label>
+                                    <input type="password" id="registerPassword" class="form-control" required>
+                                    <div class="error-message" id="registerPasswordError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="registerBio" class="form-label">Bio</label>
+                                    <textarea id="registerBio" class="form-control" rows="3" placeholder="Tell us about yourself..."></textarea>
+                                    <div class="error-message" id="registerBioError"></div>
+                                </div>
+                                <button type="submit" class="btn btn--primary btn--full-width">Create Account</button>
+                                <div class="form-message" id="registerMessage"></div>
+                            </form>
+                            
+                            <div class="auth-footer">
+                                <p>Already have an account? <a href="#" id="showLoginBtn">Sign in</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Feed Page -->
+            <div id="homePage" class="page">
+                <div class="container">
+                    <div class="home-layout">
+                        <aside class="home-sidebar">
+                            <div class="card user-card">
+                                <div class="card__body">
+                                    <div class="user-info">
+                                        <div class="user-avatar">
+                                            <span id="userInitials"></span>
+                                        </div>
+                                        <h4 id="sidebarUserName"></h4>
+                                        <p id="sidebarUserBio"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                        
+                        <main class="home-main">
+                            <div class="feed-header">
+                                <h2>Your Feed</h2>
+                                <button class="btn btn--primary" data-route="create-post">Create Post</button>
+                            </div>
+                            
+                            <div id="postsContainer" class="posts-container">
+                                <!-- Posts will be dynamically loaded here -->
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create Post Page -->
+            <div id="createPostPage" class="page">
+                <div class="container">
+                    <div class="create-post-container">
+                        <div class="card">
+                            <div class="card__body">
+                                <h2>Create a New Post</h2>
+                                <form id="createPostForm">
+                                    <div class="form-group">
+                                        <label for="postContent" class="form-label">What's on your mind?</label>
+                                        <textarea id="postContent" class="form-control" rows="5" placeholder="Share your thoughts..." maxlength="500" required></textarea>
+                                        <div class="character-count">
+                                            <span id="charCount">0</span>/500 characters
+                                        </div>
+                                        <div class="error-message" id="postContentError"></div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="button" class="btn btn--outline" data-route="home">Cancel</button>
+                                        <button type="submit" class="btn btn--primary">Post</button>
+                                    </div>
+                                    <div class="form-message" id="postMessage"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Page -->
+            <div id="profilePage" class="page">
+                <div class="container">
+                    <div class="profile-container">
+                        <div class="card profile-card">
+                            <div class="card__body">
+                                <div class="profile-header">
+                                    <div class="profile-avatar">
+                                        <span id="profileInitials"></span>
+                                    </div>
+                                    <div class="profile-info">
+                                        <h1 id="profileName"></h1>
+                                        <p id="profileEmail"></p>
+                                        <p id="profileBio"></p>
+                                        <div class="profile-stats">
+                                            <span id="profilePostCount">0 posts</span>
+                                        </div>
+                                    </div>
+                                    <div class="profile-actions" id="profileActions">
+                                        <button class="btn btn--outline" id="editProfileBtn">Edit Profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-posts">
+                            <h3>Posts</h3>
+                            <div id="profilePostsContainer">
+                                <!-- User's posts will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Profile Page -->
+            <div id="editProfilePage" class="page">
+                <div class="container">
+                    <div class="edit-profile-container">
+                        <div class="card">
+                            <div class="card__body">
+                                <h2>Edit Profile</h2>
+                                <form id="editProfileForm">
+                                    <div class="form-group">
+                                        <label for="editName" class="form-label">Full Name</label>
+                                        <input type="text" id="editName" class="form-control" required>
+                                        <div class="error-message" id="editNameError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editEmail" class="form-label">Email</label>
+                                        <input type="email" id="editEmail" class="form-control" required>
+                                        <div class="error-message" id="editEmailError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editBio" class="form-label">Bio</label>
+                                        <textarea id="editBio" class="form-control" rows="3"></textarea>
+                                        <div class="error-message" id="editBioError"></div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="button" class="btn btn--outline" data-route="profile">Cancel</button>
+                                        <button type="submit" class="btn btn--primary">Save Changes</button>
+                                    </div>
+                                    <div class="form-message" id="editProfileMessage"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
